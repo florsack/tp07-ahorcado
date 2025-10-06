@@ -80,12 +80,10 @@ public class Juego
     }
     public void FinJuego(){
         bool yaExiste = false;
-        int posicion = -1;
         int i = 0;
         while(i < Jugadores.Count && yaExiste == false){
             if (Jugadores[i].Nombre == JugadorActual.Nombre){
                 yaExiste = true;
-                posicion = i;
             }
             i++;
         }
@@ -97,19 +95,16 @@ public class Juego
             Jugadores.Add(JugadorActual);
         }
     }
-    public List<Usuario> DevolverListaUsuarios(){ //arreglar!!
+    public List<Usuario> DevolverListaUsuarios(){ 
         List<Usuario> usuariosOrdenados = new List<Usuario>();
         foreach (Usuario usuario in Jugadores){
-            bool tieneMenosIntentos = false;
             int i = 0;
-            while(i < usuariosOrdenados.Count && tieneMenosIntentos == false){
-                if(usuariosOrdenados[i].CantidadIntentos < usuario.CantidadIntentos){
-                    tieneMenosIntentos = true;
-                }
+            while(i < usuariosOrdenados.Count && usuariosOrdenados[i].CantidadIntentos < usuario.CantidadIntentos){
+                
                 i++;
             }
-            usuariosOrdenados[i] = usuario;
+            usuariosOrdenados.Insert(i, usuario);
         }
-        return usuariosOrdenados
+        return usuariosOrdenados;
     }
 }
