@@ -3,6 +3,9 @@
 }
 
 <div>
-    <h1>Index</h1>
-    <p>Bienvenidos al sitio web de NombreProyecto</p>
+    <form action="@Url.Action("Comenzar")" method="post">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="number" name="dificultad" min="1" max="4" placeholder="Dificultad (1-4)" required>
+        <input type="submit" placeholder="Comenzar">
+    </form>
 </div>

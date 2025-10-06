@@ -57,7 +57,7 @@ public class Juego
                 new Palabra("Idiosincrasia", 4),
                 new Palabra("Onomatopeya", 4),
                 new Palabra("Inconmensurable", 4),
-                new Palabra("Metempsicosis", 4),
+                new Palabra("Metempsicosis", 4)
             };
     }
 
@@ -80,16 +80,18 @@ public class Juego
     }
     public void FinJuego(){
         bool yaExiste = false;
+        int posicion = -1;
         int i = 0;
         while(i < Jugadores.Count && yaExiste == false){
             if (Jugadores[i].Nombre == JugadorActual.Nombre){
                 yaExiste = true;
+                posicion = i;
             }
             i++;
         }
         if (yaExiste){
-            if(Jugadores[i].CantidadIntentos > JugadorActual.CantidadIntentos){
-                Jugadores[i].CantidadIntentos = JugadorActual.CantidadIntentos;
+            if(Jugadores[posicion].CantidadIntentos > JugadorActual.CantidadIntentos){
+                Jugadores[posicion].CantidadIntentos = JugadorActual.CantidadIntentos;
             }
         }else{
             Jugadores.Add(JugadorActual);
@@ -100,7 +102,6 @@ public class Juego
         foreach (Usuario usuario in Jugadores){
             int i = 0;
             while(i < usuariosOrdenados.Count && usuariosOrdenados[i].CantidadIntentos < usuario.CantidadIntentos){
-                
                 i++;
             }
             usuariosOrdenados.Insert(i, usuario);

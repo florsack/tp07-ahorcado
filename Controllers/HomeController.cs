@@ -15,10 +15,15 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        Juego juego = objeto.StringToObject<Juego>(HttpContext.Session.GetString("JuegoActual"));
+        Juego juego = new Juego();
+        if (objeto.StringToObject<Juego>(HttpContext.Session.GetString("JuegoActual")) != null)
+        {
+            juego = objeto.StringToObject<Juego>(HttpContext.Session.GetString("JuegoActual"));
+        }
         ViewBag.Jugadores = juego.DevolverListaUsuarios();
         return View();
     }
+    [HttpPost]
     public IActionResult Comenzar(string username, int dificultad)
     {
         Juego juego = new Juego();
@@ -28,5 +33,12 @@ public class HomeController : Controller
         ViewBag.Usuario = username;
         ViewBag.Palabra = juego.PalabraActual;
         return View();
+    }
+    public IActionResult FinJuego(int intentos)
+    {
+        Juego juego = objeto.StringToObject<Juego>(HttpContext.Session.GetString("JuegoActual"));
+        juego.FinJuego();
+        HttpContext.Session.Remove("JuegoActual");
+        return RedirectToAction("Index");
     }
 }
