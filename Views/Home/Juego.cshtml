@@ -1,0 +1,40 @@
+<div class="container text-center mt-5">
+    <h2>Bienvenido, @ViewBag.Usuario 👋</h2>
+    <h3>¡Adiviná la palabra!</h3>
+
+    <p id="Palabra" hidden>@ViewBag.Palabra</p>
+
+    <div id="palabra-container" class="mt-4">
+        @if (!string.IsNullOrEmpty(@ViewBag.Palabra))
+        {
+            foreach (char letra in @ViewBag.Palabra)
+            {
+                <span class="letra-oculta">_</span>
+            }
+        }
+    </div>
+
+    <form id="formJuego" class="mt-4">
+        <input type="text" id="inputLetraPalabra" name="letraPalabra" placeholder="Ingresá una letra o palabra" required>
+        <input type="hidden" id="intentos" name="intentos" value="0">
+
+        <div class="mt-3">
+            <button type="button" id="btnArriesgarLetra">Arriesgar Letra</button>
+            <button type="button" id="btnArriesgarPalabra">Arriesgar Palabra</button>
+        </div>
+    </form>
+
+    <div id="letras-usadas" class="mt-4">
+        <h5>Letras arriesgadas:</h5>
+        <div id="contenedor-letras"></div>
+    </div>
+
+    <div id="botones-final" class="mt-4" style="display: none;">
+        <form method="post" action='@Url.Action("FinJuego")'>
+            <input type="hidden" name="intentos" id="intentosFinal">
+            <button type="submit" class="btn btn-success">Fin del juego</button>
+        </form>
+    </div>
+</div>
+
+<script src="~/js/site.js" asp-append-version="true"></script>

@@ -32,7 +32,7 @@ public class HomeController : Controller
         HttpContext.Session.SetString("JuegoActual", objeto.ObjectToString(juego));
         ViewBag.Usuario = username;
         ViewBag.Palabra = juego.PalabraActual;
-        return View();
+        return View("Juego");
     }
     public IActionResult FinJuego(int intentos)
     {

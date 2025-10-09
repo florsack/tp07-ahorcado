@@ -1,6 +1,15 @@
 ﻿@{
     ViewData["Title"] = "Index";
 }
+@if(@ViewBag.Jugadores != null){
+    <h1>Top de jugadores</h1>
+    <ol>
+    @foreach(Usuario jugador in @ViewBag.jugadores){
+        <li>@jugador.Nombre</li>
+    }
+    </ol>
+}
+
 
 <div>
     <form action="@Url.Action("Comenzar")" method="post">
@@ -9,3 +18,4 @@
         <input type="submit" placeholder="Comenzar">
     </form>
 </div>
+

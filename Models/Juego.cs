@@ -82,20 +82,7 @@ public class Juego
         bool yaExiste = false;
         int posicion = -1;
         int i = 0;
-        while(i < Jugadores.Count && yaExiste == false){
-            if (Jugadores[i].Nombre == JugadorActual.Nombre){
-                yaExiste = true;
-                posicion = i;
-            }
-            i++;
-        }
-        if (yaExiste){
-            if(Jugadores[posicion].CantidadIntentos > JugadorActual.CantidadIntentos){
-                Jugadores[posicion].CantidadIntentos = JugadorActual.CantidadIntentos;
-            }
-        }else{
-            Jugadores.Add(JugadorActual);
-        }
+        Jugadores.Add(JugadorActual);
     }
     public List<Usuario> DevolverListaUsuarios(){ 
         List<Usuario> usuariosOrdenados = new List<Usuario>();

@@ -21,3 +21,29 @@ footer {
   background-color: #f8f9fa;
   border-top: 1px solid #e9ecef;
 }
+
+.letra-oculta {
+    display: inline-block;
+    font-size: 2rem;
+    margin: 0 5px;
+    border-bottom: 2px solid #000;
+    width: 30px;
+    text-align: center;
+}
+
+#inputLetraPalabra {
+    padding: 8px;
+    font-size: 1rem;
+}
+
+button {
+    margin: 5px;
+    padding: 8px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#contenedor-letras {
+    font-size: 1.2rem;
+    margin-top: 5px;
+}

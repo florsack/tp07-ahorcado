@@ -4,12 +4,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData[index: "Title"] - NombreProyecto</title>
+    <title>@ViewData["Title"] - AhorcadORT</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 
 <body>
     <header>
+        <img src="/img/logo.webp" style="width:3%">
         <a href="@Url.Action("Comenzar")"></a>
     </header>
 
@@ -18,7 +19,7 @@
     </main>
 
     <footer>
-        &copy; @DateTime.Now.Year - NombreProyecto
+        &copy; @DateTime.Now.Year - AhorcadORT
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
