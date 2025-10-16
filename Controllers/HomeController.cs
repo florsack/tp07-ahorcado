@@ -16,11 +16,17 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         Juego juego = new Juego();
+        List<Usuario> listaJugadores = new List<Usuario>();
         if (objeto.StringToObject<Juego>(HttpContext.Session.GetString("JuegoActual")) != null)
         {
             juego = objeto.StringToObject<Juego>(HttpContext.Session.GetString("JuegoActual"));
         }
-        ViewBag.Jugadores = juego.DevolverListaUsuarios();
+        string listaString = HttpContext.Session.GetString("ListaJugadores");
+        if (!string.IsNullOrEmpty(listaString))
+        {
+            listaJugadores = objeto.StringToObject<List<Usuario>>(listaString);
+        }
+        ViewBag.Jugadores = listaJugadores;
         return View();
     }
     [HttpPost]
@@ -37,7 +43,15 @@ public class HomeController : Controller
     public IActionResult FinJuego(int intentos)
     {
         Juego juego = objeto.StringToObject<Juego>(HttpContext.Session.GetString("JuegoActual"));
+        juego.JugadorActual.CantidadIntentos = intentos;
         juego.FinJuego();
+        List<Usuario> listaJugadores = new List<Usuario>();
+        string listaString = HttpContext.Session.GetString("ListaJugadores");
+        if (!string.IsNullOrEmpty(listaString))
+        {
+            listaJugadores = objeto.StringToObject<List<Usuario>>(listaString);
+        }
+        HttpContext.Session.SetString("ListaJugadores", objeto.ObjectToString(juego.DevolverListaUsuarios()));
         HttpContext.Session.Remove("JuegoActual");
         return RedirectToAction("Index");
     }

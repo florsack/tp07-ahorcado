@@ -79,9 +79,6 @@ public class Juego
 
     }
     public void FinJuego(){
-        bool yaExiste = false;
-        int posicion = -1;
-        int i = 0;
         Jugadores.Add(JugadorActual);
     }
     public List<Usuario> DevolverListaUsuarios(){ 
